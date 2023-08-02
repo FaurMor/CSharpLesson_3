@@ -43,7 +43,7 @@ namespace CSharpLesson
 
             Beast beast;
             BeastCreator beastCreator = new BeastCreator();
-            Console.ReadLine();
+
             Console.Write("Введите Ваше имя:");
             Hero mainHero = new Hero(Console.ReadLine());
             mainHero.GetCardPack();
