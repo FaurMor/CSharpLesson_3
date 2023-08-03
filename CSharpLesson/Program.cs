@@ -175,7 +175,7 @@ namespace CSharpLesson
 
         private static bool CheckNumber(int count, int index)
         {
-           return index < 0 && index >= count;
+           return index >= 0 && index < count;
         }
     }
 }
