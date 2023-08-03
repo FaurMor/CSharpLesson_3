@@ -51,6 +51,7 @@ namespace CSharpLesson
             do
             {
                 beast = null;
+                bool swapEnable = true;
                 beast = beastCreator.CreateRandomBeast();
                 Console.WriteLine($"К вам приближается {beast.Name}");
                 Console.WriteLine(FighterInfo.GetBeastInfo(beast));
@@ -79,7 +80,7 @@ namespace CSharpLesson
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Вы не справились с опасностей. Зверь оказался сильнее");
+                                    Console.WriteLine($"Вы не справились с опасностей, {mainHero.Name}. Зверь оказался сильнее");
                                     endGame = true;
                                 }
                             }
@@ -107,7 +108,7 @@ namespace CSharpLesson
                                 }
                                 else
                                 {
-                                    Console.WriteLine($"Зверь {beast.Name} не понял ваших слов... Битва проиграна");
+                                    Console.WriteLine($"Зверь {beast.Name} не понял ваших слов... Битва проиграна, {mainHero.Name}");
                                     endGame = true;
                                 }
                             }
@@ -125,18 +126,27 @@ namespace CSharpLesson
                         }
                         else //swap
                         {
-                            Console.WriteLine("Выберите карту");
-                            Console.WriteLine(mainHero.Casket.GetCardListToString());
-                            int cardNumber = ReadNumber(Console.ReadLine());
-                            int cardCount = mainHero.Casket.GetCardCount();
-                            if (CheckNumber(cardCount, cardNumber))
+                            if (swapEnable)
                             {
-                                mainHero.Casket.SwapCardToRandom(cardNumber);
-                                Console.WriteLine("Карта изменена");
+                                Console.WriteLine("Выберите карту");
+                                Console.WriteLine(mainHero.Casket.GetCardListToString());
+                                int cardNumber = ReadNumber(Console.ReadLine());
+                                int cardCount = mainHero.Casket.GetCardCount();
+                                if (CheckNumber(cardCount, cardNumber))
+                                {
+                                    mainHero.Casket.SwapCardToRandom(cardNumber);
+                                    Console.WriteLine("Карта изменена");
+                                    swapEnable = false;
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Введите число от 1 до {cardCount}");
+                            
+                                }
                             }
                             else
                             {
-                                Console.WriteLine($"Введите число от 1 до {cardCount}");
+                                Console.WriteLine("Вы уже поменяли карту в этом бою!");
                             }
                         }
                     }
@@ -146,7 +156,7 @@ namespace CSharpLesson
                     }
                 } while (!endGame && !beast.IsDead && !beast.IsConversatable);
             } while (!endGame);
-            Console.WriteLine($"Получено очков: {mainHero.Score}");
+            Console.WriteLine($"{mainHero.Name} - Получено очков: {mainHero.Score}");
 
             Console.ReadLine();
         }
