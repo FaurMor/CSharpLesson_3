@@ -12,8 +12,8 @@ namespace CSharpLesson
         private const int MaxHealth = 20;
         public Beast CreateRandomBeast()
         {
+            Thread.Sleep(100);
             Random random = new Random();
-            Thread.Sleep(50);
             BeastNames randomBeastName = (BeastNames)random.Next(1, Enum.GetNames(typeof(BeastNames)).Length);
             Elements randomElement = (Elements)random.Next(1, Enum.GetNames(typeof(Elements)).Length);
             float randomHealth = random.Next(1, MaxHealth + 1);
