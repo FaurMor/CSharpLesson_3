@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSharpLesson
+﻿namespace CSharpLesson
 {
-    public enum BeastNames
+    public enum EmenyNames
     {
         Fwayariu,
         Qann,

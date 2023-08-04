@@ -2,10 +2,10 @@
 
 namespace CSharpLesson
 {
-    public static class Conversation
+    public class ConversateManager
     {
         private const float MaxDiff = 9.0f;
-        public static bool GetConservateResult(IConversate conversator, IConversate conversatable)
+        public bool GetConversateResult(IConversate conversator, IConversate conversatable)
         {
             float conversatorDiff = conversator.Outlook.GetOutlookEquivalent();
             float conversatableDiff = conversatable.Outlook.GetOutlookEquivalent();
@@ -15,7 +15,7 @@ namespace CSharpLesson
             return randomDouble < chance;
         }
 
-        private static float GetDifferenceBetween(float first, float second)
+        private float GetDifferenceBetween(float first, float second)
             => Math.Abs(first - second);
     }
 }

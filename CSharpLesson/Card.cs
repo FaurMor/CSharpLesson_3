@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSharpLesson
+﻿namespace CSharpLesson
 {
     public class Card : IAttacker, IConversator
     {
@@ -33,11 +27,6 @@ namespace CSharpLesson
         public void TryToConversate(IConversatable enemy)
         {
             enemy.Conversating(this);
-        }
-
-        public void Attack(IFighter enemy)
-        {
-            throw new NotImplementedException();
         }
     }
 }

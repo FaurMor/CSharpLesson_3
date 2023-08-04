@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpLesson
 {
@@ -14,14 +11,18 @@ namespace CSharpLesson
 
         private List<Card> _cards;
 
+        public Casket()
+        {
+            _cards = new List<Card>();
+            _random = new Random();
+        }
+
         public void GetRandomCards()
         {
             if (_cards == null)
-            {
-                _cards = new List<Card>();
-            }
-            else _cards.Clear();
-            _random = new Random();
+                    _cards = new List<Card>();
+            else    _cards.Clear();
+
             for (int card = 0; card < MaxCards; card++)
             {
                 _cards.Add(CreateRandomCard());

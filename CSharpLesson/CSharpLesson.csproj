@@ -44,13 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BattleManager.cs" />
-    <Compile Include="Beast.cs" />
+    <Compile Include="Enemy.cs" />
     <Compile Include="BeastCreator.cs" />
-    <Compile Include="BeastNames.cs" />
+    <Compile Include="EmenyNames.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardNames.cs" />
     <Compile Include="Casket.cs" />
-    <Compile Include="Conversation.cs" />
+    <Compile Include="ConsolePrinter.cs" />
+    <Compile Include="ConversateManager.cs" />
     <Compile Include="ElementCoefficient.cs" />
     <Compile Include="Elements.cs" />
     <Compile Include="Ethics.cs" />
@@ -62,10 +63,10 @@
     <Compile Include="IConservator.cs" />
     <Compile Include="IDefensive.cs" />
     <Compile Include="IFighter.cs" />
-    <Compile Include="LoreData.cs" />
+    <Compile Include="MenuManager.cs" />
     <Compile Include="Morals.cs" />
     <Compile Include="Outlook.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

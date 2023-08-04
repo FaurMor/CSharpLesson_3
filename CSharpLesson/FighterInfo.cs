@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSharpLesson
+﻿namespace CSharpLesson
 {
-    public static class FighterInfo
+    public class FighterInfo
     {
-        public static string GetCardInfo(Card card)
+        public string GetCardInfo(Card card)
         {
             string name = card.Name;
             float attack = card.Power;
@@ -21,7 +15,7 @@ namespace CSharpLesson
             return result;
         }
 
-        public static string GetBeastInfo(Beast beast)
+        public static string GetBeastInfo(Enemy beast)
         {
             string name = beast.Name;
             float health = beast.Health;

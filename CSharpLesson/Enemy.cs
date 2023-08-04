@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSharpLesson
+﻿namespace CSharpLesson
 {
-    public class Beast : IDefensive, IConversatable
+    public class Enemy : IDefensive, IConversatable
     {
         public string Name { get; }
         public Elements Element { get; }
@@ -15,7 +9,7 @@ namespace CSharpLesson
         public bool IsDead { get; private set; }
         public bool IsConversatable { get; private set; }
 
-        public Beast(string name,
+        public Enemy(string name,
                         Elements element,
                         float health,
                         Outlook outlook)
@@ -30,7 +24,8 @@ namespace CSharpLesson
 
         public void TakeDamage(float damage, Elements enemyElement)
         {
-            float totalDamage = damage * ElementCoefficient.GetElementCoefficient(enemyElement, Element);
+            ElementCoefficient coefficient = new ElementCoefficient();
+            float totalDamage = damage * coefficient.GetElementCoefficient(enemyElement, Element);
             if (totalDamage >= Health)
             {
                 IsDead = true;
@@ -39,7 +34,8 @@ namespace CSharpLesson
 
         public void Conversating(IConversate enemy)
         {
-            if (Conversation.GetConservateResult(enemy, this))
+            ConversateManager conversateManager = new ConversateManager();
+            if (conversateManager.GetConversateResult(enemy, this))
             {
                 IsConversatable = true;
             }
