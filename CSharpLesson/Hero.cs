@@ -2,7 +2,7 @@
 {
     public class Hero
     {
-        public Casket HeroCasket { get; private set; }
+        public CardBox CardBox { get; private set; }
         public string Name { get; }
         public float Score { get; private set; }
 
@@ -10,16 +10,16 @@
         {
             Name = name;
             Score = 0;
-            HeroCasket = new Casket();
+            CardBox = new CardBox();
         }
 
         public void GetCardPack()
         {
-            HeroCasket.GetRandomCards();
+            CardBox.GenerateRandomCards();
         }
 
         public void SwapCard(int cardIndex)
-            => HeroCasket.SwapCardToRandom(cardIndex);
+            => CardBox.SwapCard(cardIndex);
 
         public void AddScore(float score)
         {

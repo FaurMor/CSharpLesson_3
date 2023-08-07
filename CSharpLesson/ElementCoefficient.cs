@@ -10,7 +10,7 @@
         {0.9f, 1.1f,  0.4f, 1.0f }
         };
 
-        public float GetElementCoefficient(Elements attacking, Elements defensive)
+        public float GetElementCoefficient(Element attacking, Element defensive)
             => _elementsCoefficient[(int)attacking, (int)defensive];
     }
 

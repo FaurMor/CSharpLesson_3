@@ -2,13 +2,13 @@
 
 namespace CSharpLesson
 {
-    public class ConversateManager
+    public class Conversate
     {
         private const float MaxDiff = 9.0f;
-        public bool GetConversateResult(IConversate conversator, IConversate conversatable)
+        public bool GetConversateResult(IConversator conversator, IConversatable conversatable)
         {
-            float conversatorDiff = conversator.Outlook.GetOutlookEquivalent();
-            float conversatableDiff = conversatable.Outlook.GetOutlookEquivalent();
+            float conversatorDiff = conversator.Outlook.OutlookEquivalent;
+            float conversatableDiff = conversatable.Outlook.OutlookEquivalent;
             double chance = 1 - GetDifferenceBetween(conversatorDiff, conversatableDiff) / MaxDiff;
             Random random = new Random();
             double randomDouble = random.NextDouble();

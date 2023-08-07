@@ -3,14 +3,14 @@
     public class Enemy : IDefensive, IConversatable
     {
         public string Name { get; }
-        public Elements Element { get; }
+        public Element Element { get; }
         public Outlook Outlook { get; }
         public float Health { get; private set; }
         public bool IsDead { get; private set; }
         public bool IsConversatable { get; private set; }
 
         public Enemy(string name,
-                        Elements element,
+                        Element element,
                         float health,
                         Outlook outlook)
         {
@@ -22,23 +22,17 @@
             IsConversatable = false;
         }
 
-        public void TakeDamage(float damage, Elements enemyElement)
+        public void TakeDamage(float damage, Element enemyElement)
         {
             ElementCoefficient coefficient = new ElementCoefficient();
             float totalDamage = damage * coefficient.GetElementCoefficient(enemyElement, Element);
-            if (totalDamage >= Health)
-            {
-                IsDead = true;
-            }
+            IsDead = totalDamage >= Health;
         }
 
-        public void Conversating(IConversate enemy)
+        public void Conversating(IConversator conversator)
         {
-            ConversateManager conversateManager = new ConversateManager();
-            if (conversateManager.GetConversateResult(enemy, this))
-            {
-                IsConversatable = true;
-            }
+            Conversate conversateManager = new Conversate();
+            IsConversatable = conversateManager.GetConversateResult(conversator, this);
         }
     }
 }

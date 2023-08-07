@@ -3,21 +3,22 @@ using System.Collections.Generic;
 
 namespace CSharpLesson
 {
-    public class Casket
+    public class CardBox
     {
         private const int MaxPower = 20;
         private const int MaxCards = 5;
         private Random _random;
-
         private List<Card> _cards;
 
-        public Casket()
+        public int CardsCount => _cards.Count;
+
+        public CardBox()
         {
             _cards = new List<Card>();
             _random = new Random();
         }
 
-        public void GetRandomCards()
+        public void GenerateRandomCards()
         {
             if (_cards == null)
                     _cards = new List<Card>();
@@ -29,7 +30,7 @@ namespace CSharpLesson
             }
         }
 
-        public string GetCardListToString()
+        public string GetCardsString()
         {
             string result = string.Empty;
             for (int cardIndex = 0; cardIndex < _cards.Count; cardIndex++)
@@ -41,19 +42,16 @@ namespace CSharpLesson
         public Card GetCard(int card)
             => _cards[card];
 
-        public int GetCardCount()
-            => _cards.Count;
-
-        public void SwapCardToRandom(int cardIndex)
+        public void SwapCard(int cardIndex)
             => _cards[cardIndex] = CreateRandomCard();
 
         private Card CreateRandomCard()
         {
             CardNames randomCardName = (CardNames)_random.Next(1, Enum.GetNames(typeof(CardNames)).Length);
-            Elements randomElement = (Elements)_random.Next(1, Enum.GetNames(typeof(Elements)).Length);
+            Element randomElement = (Element)_random.Next(1, Enum.GetNames(typeof(Element)).Length);
             float randomPower = _random.Next(1, MaxPower + 1);
             Morals randomMoral = (Morals)_random.Next(1, Enum.GetNames(typeof(Morals)).Length);
-            Ethics randomEthic = (Ethics)_random.Next(1, Enum.GetNames(typeof(Ethics)).Length);
+            Ethic randomEthic = (Ethic)_random.Next(1, Enum.GetNames(typeof(Ethic)).Length);
 
             return new Card(randomCardName.ToString(), randomElement, randomPower, new Outlook(randomMoral, randomEthic));
         }

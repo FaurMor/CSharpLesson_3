@@ -1,6 +1,6 @@
 ﻿namespace CSharpLesson
 {
-    public enum Ethics
+    public enum Ethic
     {
         Peace = 1,
         Neutral = 2,

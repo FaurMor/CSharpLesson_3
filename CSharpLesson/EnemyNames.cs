@@ -1,6 +1,6 @@
 ﻿namespace CSharpLesson
 {
-    public enum EmenyNames
+    public enum EnemyNames
     {
         Fwayariu,
         Qann,

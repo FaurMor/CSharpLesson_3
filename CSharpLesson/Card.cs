@@ -3,13 +3,13 @@
     public class Card : IAttacker, IConversator
     {
         public string Name { get; }
-        public Elements Element { get; }
+        public Element Element { get; }
         public Outlook Outlook { get; }
         public float Power { get; private set; }
 
 
         public Card(string name,
-                    Elements element,
+                    Element element,
                     float power,
                     Outlook outlook)
         {
@@ -24,7 +24,7 @@
             enemy.TakeDamage(Power, Element);
         }
 
-        public void TryToConversate(IConversatable enemy)
+        public void TryConversate(IConversatable enemy)
         {
             enemy.Conversating(this);
         }

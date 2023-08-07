@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BattleManager.cs" />
+    <Compile Include="Battle.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="BeastCreator.cs" />
     <Compile Include="EmenyNames.cs" />
@@ -58,11 +58,9 @@
     <Compile Include="FighterInfo.cs" />
     <Compile Include="Hero.cs" />
     <Compile Include="IAttacker.cs" />
-    <Compile Include="IConservatable.cs" />
-    <Compile Include="IConservate.cs" />
-    <Compile Include="IConservator.cs" />
+    <Compile Include="IConversator.cs" />
+    <Compile Include="IConversatable.cs" />
     <Compile Include="IDefensive.cs" />
-    <Compile Include="IFighter.cs" />
     <Compile Include="MenuManager.cs" />
     <Compile Include="Morals.cs" />
     <Compile Include="Outlook.cs" />

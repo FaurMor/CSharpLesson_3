@@ -1,8 +1,8 @@
 ﻿namespace CSharpLesson
 {
-    public class BattleManager
+    public class Battle
     {
-        public bool ToBattle(IAttacker attacker, IDefensive defensive)
+        public bool StartBattle(IAttacker attacker, IDefensive defensive)
         {
             attacker.Attack(defensive);
             return defensive.IsDead;

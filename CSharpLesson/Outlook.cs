@@ -3,15 +3,13 @@
     public class Outlook
     {
         public Morals Moral { get; }
-        public Ethics Ethic { get; }
+        public Ethic Ethic { get; }
+        public float OutlookEquivalent => (float)Moral * (float)Ethic;
 
-        public Outlook(Morals moral, Ethics ethics)
+        public Outlook(Morals moral, Ethic ethics)
         {
             Moral = moral;
             Ethic = ethics;
         }
-
-        public float GetOutlookEquivalent()
-            => (float)Moral * (float)Ethic;
     }
 }

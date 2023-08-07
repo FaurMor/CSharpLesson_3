@@ -15,7 +15,7 @@
             return result;
         }
 
-        public static string GetBeastInfo(Enemy beast)
+        public string GetBeastInfo(Enemy beast)
         {
             string name = beast.Name;
             float health = beast.Health;

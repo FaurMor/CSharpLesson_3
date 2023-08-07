@@ -1,6 +1,6 @@
 ﻿namespace CSharpLesson
 {
-    public enum Elements
+    public enum Element
     {
         Water,
         Fire,

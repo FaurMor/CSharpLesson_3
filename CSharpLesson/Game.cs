@@ -9,9 +9,10 @@ namespace CSharpLesson
             Random random = new Random();
             Console.Write("Введите Ваше имя:");
             Hero hero = new Hero(Console.ReadLine());
-            hero.GetCardPack();
+            hero.CardBox.GenerateRandomCards();
             ConsolePrinter printer = new ConsolePrinter();
-            MenuManager menuManager = new MenuManager();
+            GameMenu menuManager = new GameMenu();
+            FighterInfo fighterInfo = new FighterInfo();
             bool endGame = false;
             do
             {
@@ -19,27 +20,27 @@ namespace CSharpLesson
                 BeastCreator beastCreator = new BeastCreator();
                 Enemy enemy = beastCreator.CreateRandomBeast(random);
                 Console.WriteLine(printer.PrintEnemyIncoming(enemy.Name));
-                Console.WriteLine(FighterInfo.GetBeastInfo(enemy));
+                Console.WriteLine(fighterInfo.GetBeastInfo(enemy));
                 do
                 {
                     Console.WriteLine(printer.PrintHeroActions());
-                    int menuAnswer = menuManager.ChooseHeroAction(Console.ReadLine(), menuManager.GetMainMenuCount());
+                    int menuAnswer = menuManager.ChooseHeroAction(Console.ReadLine(), GameMenu.MainMenuCount);
                     switch (menuAnswer)
                     {
-                        case MenuManager.MenuAttack:
+                        case GameMenu.MenuAttack:
                             {
                                 Console.WriteLine(printer.PrintChooseCard());
-                                Console.WriteLine(hero.HeroCasket.GetCardListToString());
-                                menuAnswer = menuManager.ChooseHeroAction(Console.ReadLine(), hero.HeroCasket.GetCardCount());
-                                if (menuAnswer == MenuManager.MenuWrongAnswer)
+                                Console.WriteLine(hero.CardBox.GetCardsString());
+                                menuAnswer = menuManager.ChooseHeroAction(Console.ReadLine(), hero.CardBox.CardsCount);
+                                if (menuAnswer == GameMenu.MenuWrongAnswer)
                                 {
-                                    Console.WriteLine(printer.PrintWrongAnswer(hero.HeroCasket.GetCardCount()));
+                                    Console.WriteLine(printer.PrintWrongAnswer(hero.CardBox.CardsCount));
                                 }
                                 else
                                 {
-                                    Card card = hero.HeroCasket.GetCard(menuAnswer);
-                                    BattleManager battleManager = new BattleManager();
-                                    if (battleManager.ToBattle(card, enemy))
+                                    Card card = hero.CardBox.GetCard(menuAnswer);
+                                    Battle battleManager = new Battle();
+                                    if (battleManager.StartBattle(card, enemy))
                                     {
                                         Console.WriteLine(printer.PrintWinBattle(card.Name, enemy.Name));
                                         float score = 10;
@@ -54,19 +55,19 @@ namespace CSharpLesson
                                 }
                                 break;
                             }
-                        case MenuManager.MenuConversate:
+                        case GameMenu.MenuConversate:
                             {
                                 Console.WriteLine(printer.PrintChooseCard());
-                                Console.WriteLine(hero.HeroCasket.GetCardListToString());
-                                menuAnswer = menuManager.ChooseHeroAction(Console.ReadLine(), hero.HeroCasket.GetCardCount());
-                                if (menuAnswer == MenuManager.MenuWrongAnswer)
+                                Console.WriteLine(hero.CardBox.GetCardsString());
+                                menuAnswer = menuManager.ChooseHeroAction(Console.ReadLine(), hero.CardBox.CardsCount);
+                                if (menuAnswer == GameMenu.MenuWrongAnswer)
                                 {
-                                    Console.WriteLine(printer.PrintWrongAnswer(hero.HeroCasket.GetCardCount()));
+                                    Console.WriteLine(printer.PrintWrongAnswer(hero.CardBox.CardsCount));
                                 }
                                 else
                                 {
-                                    Card card = hero.HeroCasket.GetCard(menuAnswer);
-                                    card.TryToConversate(enemy);
+                                    Card card = hero.CardBox.GetCard(menuAnswer);
+                                    card.TryConversate(enemy);
                                     if (enemy.IsConversatable)
                                     {
                                         Console.WriteLine(printer.PrintConversateSuccess(card.Name, enemy.Name));
@@ -82,29 +83,28 @@ namespace CSharpLesson
                                 }
                                 break;
                             }
-                        case MenuManager.MenuCardInfo:
+                        case GameMenu.MenuCardInfo:
                             {
-                                FighterInfo fighterInfo = new FighterInfo();
-                                for (int cardIndex = 0; cardIndex < hero.HeroCasket.GetCardCount(); cardIndex++)
+                                for (int cardIndex = 0; cardIndex < hero.CardBox.CardsCount; cardIndex++)
                                 {
-                                    Console.WriteLine(fighterInfo.GetCardInfo(hero.HeroCasket.GetCard(cardIndex)));
+                                    Console.WriteLine(fighterInfo.GetCardInfo(hero.CardBox.GetCard(cardIndex)));
                                 }
                                 break;
                             }
-                        case MenuManager.MenuCardSwap:
+                        case GameMenu.MenuCardSwap:
                             {
                                 if (swapEnable)
                                 {
                                     Console.WriteLine(printer.PrintChooseCard());
-                                    Console.WriteLine(hero.HeroCasket.GetCardListToString());
-                                    menuAnswer = menuManager.ChooseHeroAction(Console.ReadLine(), hero.HeroCasket.GetCardCount());
-                                    if (menuAnswer == MenuManager.MenuWrongAnswer)
+                                    Console.WriteLine(hero.CardBox.GetCardsString());
+                                    menuAnswer = menuManager.ChooseHeroAction(Console.ReadLine(), hero.CardBox.CardsCount);
+                                    if (menuAnswer == GameMenu.MenuWrongAnswer)
                                     {
-                                        Console.WriteLine(printer.PrintWrongAnswer(hero.HeroCasket.GetCardCount()));
+                                        Console.WriteLine(printer.PrintWrongAnswer(hero.CardBox.CardsCount));
                                     }
                                     else
                                     {
-                                        hero.HeroCasket.SwapCardToRandom(menuAnswer);
+                                        hero.CardBox.SwapCard(menuAnswer);
                                         Console.WriteLine(printer.PrintSwapingCard());
                                         swapEnable = false;
                                     }
@@ -117,7 +117,7 @@ namespace CSharpLesson
                             }
                         default:
                             {
-                                Console.WriteLine(printer.PrintWrongAnswer(hero.HeroCasket.GetCardCount()));
+                                Console.WriteLine(printer.PrintWrongAnswer(hero.CardBox.CardsCount));
                                 break;
                             }
                     }
